@@ -3,6 +3,7 @@ import Header from "./HeaderComponent";
 import Menu from "./MenuComponent.js";
 import Dishdetail from "./DishdetailComponent";
 import Footer from "./FooterComponent";
+import About from "./AboutComponent"
 import Home from "./HomeComponent";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Contact from "./ContactComponent";
@@ -11,6 +12,7 @@ import COMMENTS from "../shared/comments";
 import LEADERS from "../shared/leaders";
 import PROMOTIONS from "../shared/promotions";
 import DishDetail from "./DishdetailComponent";
+
 
 class Main extends React.Component {
   constructor(props) {
@@ -54,6 +56,7 @@ class Main extends React.Component {
             path="/menu"
           />
           <Route path="/menu/:dishId" component={DishWithId} />
+          <Route exact path="/aboutus" component={() => <About leaders={this.state.leaders} />} />
           <Route exact path="/contactus" component={Contact} />
           <Redirect to="/home" />
         </Switch>
