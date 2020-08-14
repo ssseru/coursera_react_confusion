@@ -52,8 +52,8 @@ class Main extends React.Component {
           <Route path="/home" component={HomePage} />
           <Route
             exact
-            component={() => <Menu dishes={this.state.dishes} />}
             path="/menu"
+            component={() => <Menu dishes={this.state.dishes} />}
           />
           <Route path="/menu/:dishId" component={DishWithId} />
           <Route exact path="/aboutus" component={() => <About leaders={this.state.leaders} />} />
