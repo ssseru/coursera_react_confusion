@@ -1,7 +1,7 @@
 import COMMENTS from "../shared/comments"
 import * as ActionTypes from "./ActionTypes"
 
-
+// reducers produce the state of your application.
 export const Comments = ( state = COMMENTS , action) => {
     switch(action.type) {
         case ActionTypes.ADD_COMMENT:
