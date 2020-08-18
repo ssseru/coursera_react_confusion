@@ -179,7 +179,7 @@ const DishDetail = (props) => {
     );
   }
   else if (props.dish != null) {
-    if (props.dish === null || props.dish == undefined) {
+    if (props.dish === null || props.dish === undefined) {
       return <div></div>;
     }
     return (

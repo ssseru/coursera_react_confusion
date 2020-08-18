@@ -9,7 +9,12 @@ import Contact from "./ContactComponent";
 import DishDetail from "./DishdetailComponent";
 import { connect } from 'react-redux'
 import { addComment, fetchDishes } from '../redux/ActionCreators';
+import { actions } from 'react-redux-form';
 
+// this is the component where I was earlier holding the state of my application, now this main component needs to go and obtain that state from the Redux Store. So, to do that I need to connect this component to my Redux Store. 
+
+// this will map the Redux Store's state into props that will become available to my component.
+// How did they become available as props to my main component? These are derived from the Redux's Stores by connecting this component to the Redux Store.
 const mapStateToProps = state => {
   return {
     dishes: state.dishes,
@@ -19,17 +24,16 @@ const mapStateToProps = state => {
   }
 }
 
+
+// this function call where we're calling the action creator will return the action object(includes type and payload) for adding a comment, that action object is then given as a parameter to the dispatch function here. So the dispatch function obtains that as a parameter, and that we are supplying as a function here, and this can be used within our component here
 const mapDispatchToProps = dispatch => ({
   
   addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
-  fetchDishes: () => { dispatch(fetchDishes())}
+  fetchDishes: () => { dispatch(fetchDishes())},
+  resetFeedbackForm: () => { dispatch(actions.reset('feedback'))}
 });
 
 class Main extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchDishes();
   }
@@ -70,7 +74,7 @@ class Main extends React.Component {
           />
           <Route path="/menu/:dishId" component={DishWithId} />
           <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders} />} />
-          <Route exact path="/contactus" component={Contact} />
+          <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
           <Redirect to="/home" />
         </Switch>
         <Footer />
