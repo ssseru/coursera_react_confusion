@@ -1,5 +1,4 @@
 import * as ActionTypes from "./ActionTypes"
-import DISHES from "../shared/dishes";
 import { baseUrl } from '../shared/baseUrl'
 
 //below is an action called addComment
